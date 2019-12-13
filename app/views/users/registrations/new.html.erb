@@ -1,0 +1,52 @@
+ <body style="
+ background-image: url('<%= image_path('users new.jpg') %>');
+ background-repeat: no-repeat;
+ width: 100%;
+ height: 85%;
+ background-size: cover;">
+
+ <div>
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+
+        <div class="card">
+          <div class="card-body">
+        <h1>Cadastrar-se</h1>
+
+            <%= form_with(url: site_users_register_path, model: @user , local: true, class:"form-horizontal form-label-left", method: :post) do |form| %>
+
+            <%= form.label :Apelido, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.text_field :nick_name, class:"form-control col-md-7 col-xs-12", required: true %>
+
+            <%= form.label :Nome, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.text_field :first_name, class:"form-control col-md-7 col-xs-12", required: true %>
+
+
+            <%= form.label :Sobrenome, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.text_field :last_name, class:"form-control col-md-7 col-xs-12", required: true %>
+
+
+            <%= form.label :Email, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.text_field :email, class:"form-control col-md-7 col-xs-12", required: true %>
+
+            <%= form.label :Senha, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.password_field :password, class:"form-control col-md-7 col-xs-12", required: true %>
+
+            <%= form.label :Confirmação_da_senha, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+            <%= form.password_field :password_confirmation, class:"form-control col-md-7 col-xs-12", required: true  %>
+
+            <input type="submit" name="commit" value="Cadastrar-se"  class="btn btn-default submit" style="float: none;margin-right: 4%;width: 60%;color: #FFF;background-color: #c99128;" data-disable-with="Cadastrar-se">
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+
+
+
+
+
+</body>
+

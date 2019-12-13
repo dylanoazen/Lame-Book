@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Perfil</title>
+</head>
+
+<body style="
+background-image: url('<%= image_path('users edit.jpg') %>');
+background-repeat: no-repeat;
+width: 100%;
+height: 85%;
+background-size: cover;">
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:  #cd9557!important">
+  <a class="navbar-brand" href="#">Perfil</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown">
+        <a style="color: white"><%= current_user.full_name %></a>
+      </div>
+    </li>
+  </ul>
+  <form class="form-inline my-2 my-lg-0">
+   <%= link_to(feed_home_index_path) do %>
+   <i style="color: white"  class="fas fa-backspace"></i> 
+   <span style="color: white">Voltar</span> 
+
+   <% end %>
+ </form>
+</div>
+
+</nav>
+
+<div style="width: 50%; margin-left: 25%; margin-top: 2%">
+  <%= form_with(url: feed_profile_path, model: @user , local: true, class:"form-horizontal form-label-left") do |form| %>
+  <%= form.fields_for :user_profile do |profile_form|  %>
+<div class="card">
+  <div class="card-body">
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-4">
+       <% if @user.user_profile.avatar.attached? %>
+       <%= image_tag @user.user_profile.avatar, height: 100, width: 100, class: "rounded-circle"%>
+       <% else %>  
+       <%= image_tag gravatar_image_url(@user.email, size: 100), height: 100, width: 100, class: "rounded-circle"%>
+       <% end %>
+     </div>
+
+     
+
+     <div class="col-sm-8" style="margin-left: 14%">
+      <%= profile_form.file_field :avatar %>
+    </div>
+  </div>
+</div>             
+
+
+    <%= form.label :Nick, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= form.text_field :nick_name, class:"form-control col-md-7 col-xs-12" %>
+
+
+    <%= form.label :Nome, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= form.text_field :first_name, class:"form-control col-md-7 col-xs-12" %>
+
+
+
+    <%= form.label :Sobrenome, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= form.text_field :last_name, class:"form-control col-md-7 col-xs-12" %>
+
+
+    <%= form.label :Email, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= form.text_field :email, class:"form-control col-md-7 col-xs-12", readonly: true  %>
+
+
+
+
+    <%= profile_form.label :Endereço, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= profile_form.text_field :address, class:"form-control col-md-7 col-xs-12"%>
+
+
+
+    <%= profile_form.label :Sexo, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <div class="col-md-7 col-sm-6 col-xs-12">
+      <div id="gender" class="btn-group" data-toggle="buttons">
+        <label class="btn <%= gender_select(@user, 'M') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="color: white">
+          <%= profile_form.radio_button :gender, "M", "data-parsley-multiple":"gender"%> &nbsp; Masculino &nbsp;
+        </label>
+        <label class="btn <%= gender_select(@user, 'F') %>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default"style="color: white">
+          <%= profile_form.radio_button :gender, "F", "data-parsley-multiple":"gender"%> &nbsp; Feminino &nbsp;
+        </label>
+      </div>
+    </div>
+
+
+
+    <%= profile_form.label :Data_De_Nascimento, class:"control-label col-md-3 col-sm-3 col-xs-12" %>
+    <%= profile_form.date_field :birthdate, value: (l(@user.user_profile.birthdate) unless @user.user_profile.birthdate.blank?), class:"form-control col-md-7 col-xs-12 datepicker"%>
+
+
+    <% end %>
+
+
+    <input type="submit" name="commit" value="Salvar"  class="btn btn-default submit" style="float: none;margin-left: 46%;width: 11%;color: #FFF;background-color: #c99128; margin-top: 1%" data-disable-with="Salvar"> 
+    <% end %>
+
+
+  </div>
+  <%= javascript_tag do %>
+  var labels = document.querySelectorAll('div#gender label');
+
+  labels.forEach((label) => {
+  label.addEventListener('click', () => {
+  label.classList.remove('btn-default');
+  label.classList.add('btn-primary');
+
+  labels.forEach((lbl) => {
+  if(lbl !== label){
+  lbl.classList.remove('btn-primary');
+  lbl.classList.add('btn-default');
+};
+});
+});
+});
+<% end %>
+
+
+
+
+</div>
+</div>
+</body>
+
+
+
+</html> 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<%= stylesheet_link_tag    'application' %>
+<%= stylesheet_link_tag    'site' %>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Lame Book</title>
+</head>
+
+<body style="background-image: url('<%= image_path('bom Dylan.jpg') %>');">
+
+  <div class="masthead">
+   <div class="masthead-bg" style="
+   background-image: url('<%= image_path('site.jpg') %>');
+   background-size: 100% 100%;
+   background-repeat: no-repeat;
+   "></div>
+   <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-12 my-auto">
+        <div class="masthead-content text-white py-5 py-md-0">
+          <h1 class="mb-3" style=" margin-left: 45%">Lame Book</h1>
+          <h2 style="margin-left: 15%; margin-top: 5%;">
+            Se junte aos seus amigos nessa nova rede social o Lame Book
+          </h2>
+          <a class="btn btn-secondary btn-lg" href="/users/sign_up" style="margin-left: 15%;margin-bottom: 5%;">Começe Aqui</a>    
+          <a class="btn btn-secondary btn-lg" href="/feed/home" style="margin-left: 15%;margin-bottom: 5%;">Fazer login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="social-icons">
+  <ul class="list-unstyled text-center mb-0">
+    <li class="list-unstyled-item">
+      <a style="background: #cd9557;color: white">
+        <i class="fas fa-keyboard"></i>
+      </a>
+    </li>
+    <li class="list-unstyled-item">
+      <a style="background: #cd9557;color: white">
+       <i class="far fa-thumbs-up"></i>
+     </a>
+   </li>
+   <li class="list-unstyled-item">
+    <a style="background: #cd9557;color: white">
+     <i class="fas fa-user-check"></i>
+   </a>
+ </li>
+</ul>
+</div>
+
+<%= javascript_include_tag 'application' %>
+<%= javascript_include_tag 'site' %> 
+
+
+</body>
+
+</html>

@@ -1,0 +1,2 @@
+module Feed::HomeHelper
+end

@@ -1,0 +1,2 @@
+module Feed::PostsHelper
+end

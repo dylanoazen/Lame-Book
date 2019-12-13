@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lame Book</title>
+</head>
+
+<body style="background-color: white">
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:  #cd9557!important">
+    <a class="navbar-brand" href="#">Lame Book</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <% if @user.user_profile.avatar.attached? %>
+       <%= image_tag @user.user_profile.avatar, height: 50, width: 50, class: "rounded-circle"%>
+       <% else %>  
+       <%= image_tag gravatar_image_url(@user.email, size: 50), height: 50, width: 50, class: "rounded-circle"%>
+       <% end %>
+          <%= link_to("#{ current_user.full_name}",  feed_profile_path ) %>
+        </div>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0">
+     <%= link_to(destroy_user_session_path, method: :delete) do %>
+     <span style="color: white">Sair</span> 
+     <i style="color: white" class="fas fa-sign-out-alt" ></i>
+     <% end %>
+   </div>
+ </div>
+</nav>
+
+</body>
+
+<div class="jumbotron jumbotron-fluid" style="margin-left: 4%; margin-right: 4%">
+  <div class="container">
+    <%= form_with(model: @post, scope: :post, format: :json, id: 'post-form') do |form| %>
+    <div class="field"><h2>Pronto pra fazer um novo post?</h2>
+      <%= form.text_area :post, id: :post, class: "form-control post-textarea", required: true %>
+      <%= form.hidden_field :user, id: :user %>
+    </div>
+    <div class="actions text-right">
+      <%= form.submit 'Publicar', class: "btn btn-success btn-sm mt-1" %>
+    </div>
+    <% end %>
+  </div>
+  <div class="posts mt-5">
+    <% @posts.each do |post| %>
+    <div class="post-wrapper col-12 mb-2 p-0">
+      <div class="card">
+        <div class="card-header">
+          <%= post.user.full_name%>
+          <small class="float-right mt-1"><%= post.created_at.strftime("at %I:%M%p") %></small>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><%= post.post %></p>
+          <%= link_to '', feed_like_path(post_id: post.id), remote: true, method: :post, class: "far fa-thumbs-up add-like" %><span class="ml-2" data-post="<%= post.id %>"><%= post.like_count[0] %></span>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+</nav>
+</html> 
