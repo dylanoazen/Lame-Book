@@ -19,10 +19,10 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <% if @user.user_profile.avatar.attached? %>
-       <%= image_tag @user.user_profile.avatar, height: 50, width: 50, class: "rounded-circle"%>
-       <% else %>  
-       <%= image_tag gravatar_image_url(@user.email, size: 50), height: 50, width: 50, class: "rounded-circle"%>
-       <% end %>
+          <%= image_tag @user.user_profile.avatar, height: 50, width: 50, class: "rounded-circle"%>
+          <% else %>  
+          <%= image_tag gravatar_image_url(@user.email, size: 50), height: 50, width: 50, class: "rounded-circle"%>
+          <% end %>
           <%= link_to("#{ current_user.full_name}",  feed_profile_path ) %>
         </div>
       </li>
@@ -45,8 +45,8 @@
       <%= form.text_area :post, id: :post, class: "form-control post-textarea", required: true %>
       <%= form.hidden_field :user, id: :user %>
     </div>
-    <div class="actions text-right">
-      <%= form.submit 'Publicar', class: "btn btn-success btn-sm mt-1" %>
+    <div class="actions text-right"> 
+      <input type="submit" name="commit" value="Publicar"  class="btn btn-default submit" style="float: none;margin-right: 4%;width: 12%; margin-top: 1%;color: #FFF;background-color: #c99128;" data-disable-with="Cadastrar-se">
     </div>
     <% end %>
   </div>
